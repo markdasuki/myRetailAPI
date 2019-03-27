@@ -3,33 +3,35 @@ package com.myRetail.myRetailAPI.service;
 import com.myRetail.myRetailAPI.exceptions.BadJSONRequestException;
 import com.myRetail.myRetailAPI.exceptions.ProductNotFoundException;
 import com.myRetail.myRetailAPI.models.Product;
-import com.myRetail.myRetailAPI.repositories.ProductRepository;
+import com.myRetail.myRetailAPI.repositories.ProductPriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+/*
+*  Manages services between external red sky api and product price data store
+* */
 @Service
 public class ProductService {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductPriceRepository productPriceRepository;
 
     @Autowired
     private RedskyClientService redskyClientService;
 
     /*
-    * Service to retrieve title from redsky api and price from mongoDB data store and return as JSON
+    * Service to retrieve title from redsky api and price from the product price data store and return as JSON
     *
-    * @param
-    * @return
-    * @throws
+    * @param id Product id of product
+    * @return ResponseEntity with product data as a JSON
     *
     * */
     public ResponseEntity<Product> getProductTitleAndPrice(int id) throws ProductNotFoundException
     {
         String productTitle;
-        Product productInfoDatastore;
+        Product productFromDataStore;
 
         try{
             productTitle = redskyClientService.getProductTitleFromRedsky(id);
@@ -39,52 +41,50 @@ public class ProductService {
             throw new ProductNotFoundException("Product not found from redsky API for product id: " + id);
         }
 
-        productInfoDatastore = productRepository.findProductBy_id(id);
-
-        if(productInfoDatastore == null)
-        {
-            throw new ProductNotFoundException("Product Price not found in data store for product id: " + id);
-        }
-
-        productInfoDatastore.setName(productTitle);
-
-        return new ResponseEntity<>(productInfoDatastore, HttpStatus.OK);
-    }
-
-    /*
-    * Service to change the current price of a product in the mongoDB data store
-    *
-    * @param
-    * @param
-    * @return
-    * @throws
-    * @throws
-    *
-    * */
-    public ResponseEntity<String> changeProductPrice(int id, Product productRequest) throws ProductNotFoundException, BadJSONRequestException
-    {
-        Product productFromDataStore;
-
-        if(productRequest.getCurrent_price() == null)
-        {
-            throw new BadJSONRequestException("Current Price does not exist");
-        }
-
-        if(productRequest.get_id() !=  id)
-        {
-            throw new BadJSONRequestException("Bad JSON Request: URL id is: " + id + " JSON request id is: " + productRequest.get_id());
-        }
-
-        productFromDataStore = productRepository.findProductBy_id(id);
+        productFromDataStore = productPriceRepository.findProductBy_id(id);
 
         if(productFromDataStore == null)
         {
             throw new ProductNotFoundException("Product Price not found in data store for product id: " + id);
         }
 
-        productFromDataStore.setCurrent_price(productRequest.getCurrent_price());
+        productFromDataStore.setName(productTitle);
 
-        productRepository.save(productFromDataStore);
+        return new ResponseEntity<>(productFromDataStore, HttpStatus.OK);
+    }
+
+    /*
+    * Service to change the current price of a product in the product price data store
+    *
+    * @param id
+    * @param Product
+    * @return
+    *
+    * */
+    public ResponseEntity<String> changeProductPrice(int id, Product priceChange) throws ProductNotFoundException, BadJSONRequestException
+    {
+        Product productFromDataStore;
+
+        if(priceChange.getCurrent_price() == null)
+        {
+            throw new BadJSONRequestException("Bad JSON request, no product price to update");
+        }
+
+        if(priceChange.get_id() !=  id)
+        {
+            throw new BadJSONRequestException("Bad JSON request: URL id is: " + id + ", JSON request id is: " + priceChange.get_id());
+        }
+
+        productFromDataStore = productPriceRepository.findProductBy_id(id);
+
+        if(productFromDataStore == null)
+        {
+            throw new ProductNotFoundException("Product Price not found in data store for product id: " + id);
+        }
+
+        productFromDataStore.setCurrent_price(priceChange.getCurrent_price());
+
+        productPriceRepository.save(productFromDataStore);
 
         return new ResponseEntity<>("Product update request into data store successful! ", HttpStatus.OK);
     }

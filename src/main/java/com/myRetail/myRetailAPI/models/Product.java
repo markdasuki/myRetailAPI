@@ -5,6 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.*;
 
+/*
+* Model for myRetail product
+* */
 @Document(collection="products")
 public class Product {
     @Id

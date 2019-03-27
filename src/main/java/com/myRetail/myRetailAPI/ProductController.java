@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/*
+* Controller for get and put requests for myRetail
+* */
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -14,7 +17,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    /**/
+    /*
+    *
+    * */
     @GetMapping(value = "/{id}")
     public ResponseEntity<Product> productGetRequest(@PathVariable("id") int id) throws ProductNotFoundException
     {

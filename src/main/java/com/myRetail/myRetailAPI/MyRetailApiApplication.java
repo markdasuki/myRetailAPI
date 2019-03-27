@@ -1,7 +1,7 @@
 package com.myRetail.myRetailAPI;
 
 import com.myRetail.myRetailAPI.models.Product;
-import com.myRetail.myRetailAPI.repositories.ProductRepository;
+import com.myRetail.myRetailAPI.repositories.ProductPriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,11 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootApplication
-@EnableMongoRepositories(basePackageClasses = ProductRepository.class)
+@EnableMongoRepositories(basePackageClasses = ProductPriceRepository.class)
 public class MyRetailApiApplication implements CommandLineRunner {
 
 	@Autowired
-	private ProductRepository productRepository;
+	private ProductPriceRepository productPriceRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MyRetailApiApplication.class, args);
@@ -28,13 +28,13 @@ public class MyRetailApiApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception
 	{
-		productRepository.deleteAll();
+		productPriceRepository.deleteAll();
 
 		Map currentPrice = new HashMap();
 		currentPrice.put("value", 13.49);
 		currentPrice.put("currency_code", "USD");
 		Product product = new Product (13860428, currentPrice);
 
-		productRepository.save(product);
+		productPriceRepository.save(product);
 	}
 }

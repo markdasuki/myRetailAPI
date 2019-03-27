@@ -2,25 +2,32 @@ package com.myRetail.myRetailAPI.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+/*
+* Manages services to the external redsky api
+* */
 @Service
 public class RedskyClientService {
 
     private final String redskyUrl = "https://redsky.target.com/v2/pdp/tcin/";
     private final String redskyUrlExclusion = "?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics";
+    Logger logger = LoggerFactory.getLogger(RedskyClientService.class);
 
     /*
     * Retrieve product title for a given product from the Redsky api
     *
-    * @param productId Id of t
+    * @param productId The id of the product that is requesting the title
     * @return string of title
     *
     * */
     public String getProductTitleFromRedsky(int productId) throws Exception
     {
+        logger.info("getProductTitleFromRedsky");
         String productTitle;
         RestTemplate restTemplate = new RestTemplate();
         ObjectMapper mapper = new ObjectMapper();
@@ -40,10 +47,11 @@ public class RedskyClientService {
     }
 
     /*
+    * Creates a URL to perform the GET request for a product id
     *
-    * @param productId
-    * @param url
-    * @param urlExclusion
+    * @param productId The product id that will be attached to the URL
+    * @param url The url that needs to be modified
+    * @param urlExclusion Exclusions from the api request
     *
     *
     * */

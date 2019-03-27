@@ -7,12 +7,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static com.myRetail.myRetailAPI.MyRetailAPITestHelper.*;
 
-
+/*
+* Functional Tests to test myRetail RESTful Service
+* */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MyRetailApiApplicationTests {
 
-	//Get Requests
+	//GET Request Tests
 
 	@Test
 	public void getProductInRedskyAndDatastore() throws Exception
@@ -25,6 +27,7 @@ public class MyRetailApiApplicationTests {
 	@Test
 	public void getProductInRedskyNotInDatastore () throws Exception
 	{
+		//Product ID 13860429 exists in Redsky api
 		String url = "http://localhost:8080/products/13860429";
 		invalidGet(url, 404);
 	}
@@ -35,6 +38,8 @@ public class MyRetailApiApplicationTests {
 		String url = "http://localhost:8080/products/13860427";
 		invalidGet(url, 404);
 	}
+
+	//Put Request Tests
 
 	@Test
 	public void putProductValidJSONRequest() throws Exception

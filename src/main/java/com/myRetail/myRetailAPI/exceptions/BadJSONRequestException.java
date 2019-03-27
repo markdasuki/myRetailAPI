@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /*
-* Exception when JSON request is malformed or improper
+* Exception when JSON request for a put is invalid
 *
 * */
 @ResponseStatus(HttpStatus.BAD_REQUEST)

@@ -9,17 +9,17 @@
 6. IntelliJ IDEA
 7. Windows
 
-#Setup
+# Setup
 1. Install Java 11
 2. Install MongoDB
 3. Install Gradle
 
-#Start Application
+# Start Application
 ```
 gradle bootRun
 ```
 
-#Run tests
+# Run tests
 ```
 gradle clean test
 ```
