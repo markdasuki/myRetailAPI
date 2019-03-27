@@ -39,7 +39,7 @@ cd myRetailAPI
     - Note: You only need to add dbpath if it is not setup on your mongoDB yet.
     - Note: Port flag is optional since this API will assume the default port.
 ```
-mongod --port 27017 --dbpath ...\data\db
+mongod --port 27017 --dbpath "...\data\db"
 ```
 4. Start myRetail service with gradle in \myRetailAPI.
 ```
