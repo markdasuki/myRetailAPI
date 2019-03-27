@@ -7,7 +7,7 @@
 4. Gradle
 5. JUnit
 6. IntelliJ IDEA
-7. Windows
+7. Windows 10
 
 # Setup
 1. Install Java 11
@@ -18,6 +18,16 @@
     - https://gradle.org/install/
 
 # Start Application
+1. Create \data\db folder in chosen folder if \data\db folder is not set up yet
+2. Go to MongoDB bin folder
+```
+\MongoDB\Server\4.0\bin
+```
+2. Start mongoDB
+```
+mongod --port 27017 --dbpath C:\...\data\db
+```
+
 ```
 gradle bootRun
 ```
@@ -26,3 +36,4 @@ gradle bootRun
 ```
 gradle clean test
 ```
+# Tests using Postman
