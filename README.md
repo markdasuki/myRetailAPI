@@ -8,6 +8,7 @@
 5. JUnit
 6. IntelliJ IDEA
 7. Windows 10
+8. Postman
 
 # Setup
 1. Install Java 11
@@ -19,6 +20,13 @@
 3. Install Gradle
     - https://gradle.org/install/
     - System enviornment variable needs to include \gradle-5.2.1\bin
+4. Install Postman 
+    - https://www.getpostman.com/downloads/
+
+# Clone Repo
+```
+git clone https://github.com/markdasuki/myRetailAPI.git
+```
 
 # Start Application
 1. Create \data\db directory in chosen location if \data\db directory is not set up yet
@@ -32,15 +40,26 @@
 ```
 mongod --port 27017 --dbpath ...\data\db
 ```
-3. Go to myRetail folder
+3. Go to myRetail folder in terminal
 4. Start myRetail service with gradle
 ```
 gradle bootRun
 ```
 
 # Run tests
-Requires myRetail API to be up since it performs funcitonal testing
+Requires myRetail API to be running since it performs functional testing
 ```
 gradle clean test
 ```
 # Using Postman to access myRetail API
+### Valid Get Request
+![Valid Get Request](https://github.com/markdasuki/myRetailAPI/blob/master/Postman%20Images/ValidGetRequest.png)
+### Invalid Get Requests
+![Invalid Get Request](https://github.com/markdasuki/myRetailAPI/blob/master/Postman%20Images/InvalidGetRequestNotInDatastore.png)
+![Invalid Get Request](https://github.com/markdasuki/myRetailAPI/blob/master/Postman%20Images/InvalidGetRequestNotInRedsky.png)
+### Valid Put Request
+![Valid Put Request](https://github.com/markdasuki/myRetailAPI/blob/master/Postman%20Images/ValidPutRequest.png)
+### Invalid Put Requests
+![Invalid Put Request](https://github.com/markdasuki/myRetailAPI/blob/master/Postman%20Images/InvalidPutRequestIdMismatch.png)
+![Invalid Put Request](https://github.com/markdasuki/myRetailAPI/blob/master/Postman%20Images/InvalidPutRequestNoCurrentPrice.png)
+![Invalid Put Request](https://github.com/markdasuki/myRetailAPI/blob/master/Postman%20Images/InvalidPutRequestNotInDatastore.png)
