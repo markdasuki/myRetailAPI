@@ -21,8 +21,7 @@ public class Product {
 
     public Product(){}
 
-    public Product(int _id, String name, Map current_price)
-    {
+    public Product(int _id, String name, Map current_price) {
         this._id = _id;
         this.name = name;
         this.current_price=current_price;
@@ -31,37 +30,31 @@ public class Product {
     /*
     * Constructor for creating a product with no name
     * */
-    public Product(int _id, Map current_price)
-    {
+    public Product(int _id, Map current_price) {
         this._id = _id;
         this.current_price=current_price;
     }
 
-    public int get_id()
-    {
+    public int get_id() {
         return _id;
     }
-    public void set_id(int _id)
-    {
+    public void set_id(int _id) {
         this._id=_id;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
-    public void setName(String name)
-    {
+
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Map getCurrent_price()
-    {
+    public Map getCurrent_price() {
         return current_price;
     }
 
-    public void setCurrent_price(Map current_price)
-    {
+    public void setCurrent_price(Map current_price) {
         this.current_price = current_price;
     }
 

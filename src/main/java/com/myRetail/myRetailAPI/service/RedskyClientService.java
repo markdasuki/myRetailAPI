@@ -25,8 +25,7 @@ public class RedskyClientService {
     * @return string of title
     *
     * */
-    public String getProductTitleFromRedsky(int productId) throws Exception
-    {
+    public String getProductTitleFromRedsky(int productId) throws Exception {
         logger.info("getProductTitleFromRedsky");
         String productTitle;
         RestTemplate restTemplate = new RestTemplate();
@@ -55,8 +54,7 @@ public class RedskyClientService {
     *
     *
     * */
-    public String createURLFromProductId(int productId, String url, String urlExclusion)
-    {
+    public String createURLFromProductId(int productId, String url, String urlExclusion) {
         StringBuilder getURLRequest = new StringBuilder(url);
 
         getURLRequest.append(productId);

@@ -14,8 +14,7 @@ public class MyRetailAPITestHelper {
     /*
     * Helper function to test a valid get request
     * */
-    public static void validGet(String expectedResponse, String url) throws Exception
-    {
+    public static void validGet(String expectedResponse, String url) throws Exception {
         TestRestTemplate restTemplate = new TestRestTemplate();
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root;
@@ -30,8 +29,7 @@ public class MyRetailAPITestHelper {
     /*
      * Helper function to test an invalid get request
      * */
-    public static void invalidGet(String url, int statusCode) throws Exception
-    {
+    public static void invalidGet(String url, int statusCode) {
         TestRestTemplate restTemplate = new TestRestTemplate();
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
@@ -41,8 +39,7 @@ public class MyRetailAPITestHelper {
     /*
      * Helper function to test a invalid put request
      * */
-    public static void invalidPut(String requestJson, String url, int statusCode)
-    {
+    public static void invalidPut(String requestJson, String url, int statusCode) {
         TestRestTemplate restTemplate = new TestRestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
@@ -55,10 +52,9 @@ public class MyRetailAPITestHelper {
     }
 
     /*
-     * Helper function to test valid put request. .
+     * Helper function to test a valid put request
      * */
-    public static void validPut(String requestJson, String url)
-    {
+    public static void validPut(String requestJson, String url) {
         TestRestTemplate restTemplate = new TestRestTemplate();
 
         HttpHeaders headers = new HttpHeaders();

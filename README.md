@@ -11,8 +11,11 @@
 
 # Setup
 1. Install Java 11
+    - https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html
 2. Install MongoDB
+    - https://docs.mongodb.com/manual/installation/
 3. Install Gradle
+    - https://gradle.org/install/
 
 # Start Application
 ```

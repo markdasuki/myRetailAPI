@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 /*
-*  Manages services between external red sky api and product price data store
+*  Manages service between external redsky api and product price data store
 * */
 @Service
 public class ProductService {
@@ -24,27 +24,23 @@ public class ProductService {
     /*
     * Service to retrieve title from redsky api and price from the product price data store and return as JSON
     *
-    * @param id Product id of product
+    * @param id The product id used to retrieve product data from redsky api and data store
     * @return ResponseEntity with product data as a JSON
     *
     * */
-    public ResponseEntity<Product> getProductTitleAndPrice(int id) throws ProductNotFoundException
-    {
+    public ResponseEntity<Product> getProductTitleAndPrice(int id) throws ProductNotFoundException {
         String productTitle;
         Product productFromDataStore;
 
         try{
             productTitle = redskyClientService.getProductTitleFromRedsky(id);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new ProductNotFoundException("Product not found from redsky API for product id: " + id);
         }
 
         productFromDataStore = productPriceRepository.findProductBy_id(id);
 
-        if(productFromDataStore == null)
-        {
+        if (productFromDataStore == null) {
             throw new ProductNotFoundException("Product Price not found in data store for product id: " + id);
         }
 
@@ -56,36 +52,33 @@ public class ProductService {
     /*
     * Service to change the current price of a product in the product price data store
     *
-    * @param id
-    * @param Product
-    * @return
+    * @param id The product id used to find product and modify its price
+    * @param productPriceChange JSON request body with the modified price
+    * @return ResponseEntity with status of price update
     *
     * */
-    public ResponseEntity<String> changeProductPrice(int id, Product priceChange) throws ProductNotFoundException, BadJSONRequestException
-    {
+    public ResponseEntity<String> changeProductPrice(int id, Product productPriceChange) throws ProductNotFoundException, BadJSONRequestException {
+
         Product productFromDataStore;
 
-        if(priceChange.getCurrent_price() == null)
-        {
+        if (productPriceChange.getCurrent_price() == null) {
             throw new BadJSONRequestException("Bad JSON request, no product price to update");
         }
 
-        if(priceChange.get_id() !=  id)
-        {
-            throw new BadJSONRequestException("Bad JSON request: URL id is: " + id + ", JSON request id is: " + priceChange.get_id());
+        if (productPriceChange.get_id() !=  id) {
+            throw new BadJSONRequestException("Bad JSON request: URL id is: " + id + ", JSON request id is: " + productPriceChange.get_id());
         }
 
         productFromDataStore = productPriceRepository.findProductBy_id(id);
 
-        if(productFromDataStore == null)
-        {
+        if (productFromDataStore == null) {
             throw new ProductNotFoundException("Product Price not found in data store for product id: " + id);
         }
 
-        productFromDataStore.setCurrent_price(priceChange.getCurrent_price());
+        productFromDataStore.setCurrent_price(productPriceChange.getCurrent_price());
 
         productPriceRepository.save(productFromDataStore);
 
-        return new ResponseEntity<>("Product update request into data store successful! ", HttpStatus.OK);
+        return new ResponseEntity<>("Product Price update request into data store successful! ", HttpStatus.OK);
     }
 }
