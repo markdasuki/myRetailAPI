@@ -52,6 +52,7 @@ Requires myRetail API to be running since it performs functional testing. Note t
 gradle clean test
 ```
 # Using Postman to access myRetail API
+Access API with url: http://localhost:8080/products/{id}
 ### Valid Get Request
 ![Valid Get Request](https://github.com/markdasuki/myRetailAPI/blob/master/Postman%20Images/ValidGetRequest.png)
 ### Invalid Get Requests
