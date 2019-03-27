@@ -37,7 +37,7 @@ cd myRetailAPI
 ```
 3. Start MongoDB.
     - Note: You only need to add dbpath if it is not setup on your mongoDB yet.
-    - Note: Port flag is optional since this API will assume the default port.
+    - Note: Port flag is optional since this service will assume the default port.
 ```
 mongod --port 27017 --dbpath "...\data\db"
 ```
@@ -47,7 +47,7 @@ gradle bootRun
 ```
 
 # Run tests
-Requires myRetail API to be running since it performs functional testing. Note these tests assume that tthe MongoDB data store has not been modified after starting application.
+Requires myRetail API to be running since it performs functional testing. Note these tests assume that tthe MongoDB data store has not been modified since starting the application.
 ```
 gradle clean test
 ```
