@@ -66,7 +66,7 @@ public class ProductService {
         }
 
         if (productPriceChange.get_id() !=  id) {
-            throw new BadJSONRequestException("Bad JSON request: URL id is: " + id + ", JSON request id is: " + productPriceChange.get_id());
+            throw new BadJSONRequestException("Bad JSON request: URL id is " + id + ", JSON request id is " + productPriceChange.get_id());
         }
 
         productFromDataStore = productPriceRepository.findProductBy_id(id);
@@ -79,6 +79,6 @@ public class ProductService {
 
         productPriceRepository.save(productFromDataStore);
 
-        return new ResponseEntity<>("Product Price update request into data store successful! ", HttpStatus.OK);
+        return new ResponseEntity<>("{\"message\" : \"Product Price PUT request into data store was successful!\"}", HttpStatus.OK);
     }
 }
