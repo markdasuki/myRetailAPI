@@ -1,4 +1,4 @@
-package com.myRetail.myRetailAPI;
+package com.myRetail.myRetailAPI.controller;
 import com.myRetail.myRetailAPI.exceptions.BadJSONRequestException;
 import com.myRetail.myRetailAPI.exceptions.ProductNotFoundException;
 import com.myRetail.myRetailAPI.models.Product;
