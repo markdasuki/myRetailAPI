@@ -34,7 +34,7 @@ public class RedskyClientService {
         ResponseEntity<String> getResponse = restTemplate.getForEntity(urlFromProductId, String.class);
         jsonResponse = mapper.readTree(getResponse.getBody());
 
-        //Retrieve title value from
+        //Retrieve title value from JSON
         productTitle = jsonResponse.get("product")
                            .get("item")
                            .get("product_description")
