@@ -47,7 +47,7 @@ gradle bootRun
 ```
 
 # Run tests
-Requires myRetail API to be running since it performs functional testing. Note these tests assume that tthe MongoDB data store has not been modified since starting the application.
+Requires myRetail API to be running since it performs functional testing. Note these tests assume that the MongoDB data store has not been modified since starting the application.
 ```
 gradle clean test
 ```
