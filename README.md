@@ -13,13 +13,13 @@
 # Setup
 1. Install Java 11
     - https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html
-    - Java 8 will work as well, as gradle file was modified to work on Java 8, but devlopment was done on Java 11
-    - System enviornment variable needs to include ...\Java\jdk-11.0.2\bin
+    - Java 8 will work as well, as gradle file was modified to work on Java 8, but devlopment was done on Java 11.
+    - System enviornment variable needs to include ...\Java\jdk-11.0.2\bin.
 2. Install MongoDB
     - https://docs.mongodb.com/manual/installation/
 3. Install Gradle
     - https://gradle.org/install/
-    - System enviornment variable needs to include \gradle-5.2.1\bin
+    - System enviornment variable needs to include \gradle-5.2.1\bin.
 4. Install Postman 
     - https://www.getpostman.com/downloads/
 
@@ -30,25 +30,24 @@ cd myRetailAPI
 ```
 
 # Start Application
-1. Create \data\db directory in chosen location if \data\db directory is not set up yet
-2. Go to MongoDB bin folder in terminal
+1. Create \data\db directory in chosen location if \data\db directory is not set up yet.
+2. Go to MongoDB bin folder in terminal.
 ```
 \MongoDB\Server\4.0\bin
 ```
-2. Start mongoDB 
-    - Note: You only need to add dbpath if it is not setup on your mongoDB yet
-    - Note: Port flag is optional since this API will assume the default port
+3. Start MongoDB.
+    - Note: You only need to add dbpath if it is not setup on your mongoDB yet.
+    - Note: Port flag is optional since this service will assume the default port.
 ```
-mongod --port 27017 --dbpath ...\data\db
+mongod --port 27017 --dbpath "...\data\db"
 ```
-3. Go to myRetail folder in terminal
-4. Start myRetail service with gradle
+4. Start myRetail service with gradle in \myRetailAPI.
 ```
 gradle bootRun
 ```
 
 # Run tests
-Requires myRetail API to be running since it performs functional testing
+Requires myRetail API to be running since it performs functional testing. Note these tests assume that the MongoDB data store has not been modified since starting the application.
 ```
 gradle clean test
 ```
