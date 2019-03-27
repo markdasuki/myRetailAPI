@@ -26,6 +26,7 @@
 # Clone Repo
 ```
 git clone https://github.com/markdasuki/myRetailAPI.git
+cd myRetailAPI
 ```
 
 # Start Application
