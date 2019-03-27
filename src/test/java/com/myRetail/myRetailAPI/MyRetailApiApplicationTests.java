@@ -53,13 +53,13 @@ public class MyRetailApiApplicationTests {
 	@Test
 	public void putProductModifyValue() throws Exception {
 		String requestJson = "{\"_id\":13860428,\"current_price\":{\"value\":50.99,\"currency_code\":\"USD\"}}";
-		String expected = "{\"_id\":13860428,\"name\":\"The Big Lebowski (Blu-ray)\",\"current_price\":{\"value\":50.99,\"currency_code\":\"USD\"}}";
+		String expectedResponse = "{\"_id\":13860428,\"name\":\"The Big Lebowski (Blu-ray)\",\"current_price\":{\"value\":50.99,\"currency_code\":\"USD\"}}";
 
 		String url ="http://localhost:8080/products/13860428";
 		String revertPrice = "{\"_id\":13860428,\"current_price\":{\"value\":13.49,\"currency_code\":\"USD\"}}";
 
 		validPut(requestJson, url);
-		validGet(expected, url);
+		validGet(expectedResponse, url);
 		validPut(revertPrice, url);
 	}
 
@@ -69,13 +69,13 @@ public class MyRetailApiApplicationTests {
 	@Test
 	public void putProductModifyCurrencyCode() throws Exception{
 		String requestJson = "{\"_id\":13860428,\"current_price\":{\"value\":13.49,\"currency_code\":\"CAD\"}}";
-		String expected = "{\"_id\":13860428,\"name\":\"The Big Lebowski (Blu-ray)\",\"current_price\":{\"value\":13.49,\"currency_code\":\"CAD\"}}";
+		String expectedJson = "{\"_id\":13860428,\"name\":\"The Big Lebowski (Blu-ray)\",\"current_price\":{\"value\":13.49,\"currency_code\":\"CAD\"}}";
 
 		String url ="http://localhost:8080/products/13860428";
 		String revertPrice = "{\"_id\":13860428,\"current_price\":{\"value\":13.49,\"currency_code\":\"USD\"}}";
 
 		validPut(requestJson, url);
-		validGet(expected, url);
+		validGet(expectedJson, url);
 		validPut(revertPrice, url);
 	}
 
@@ -85,13 +85,13 @@ public class MyRetailApiApplicationTests {
 	@Test
 	public void putProductModifyCurrencyCodeAndValue() throws Exception {
 		String requestJson = "{\"_id\":13860428,\"current_price\":{\"value\":16.33,\"currency_code\":\"CAD\"}}";
-		String expected = "{\"_id\":13860428,\"name\":\"The Big Lebowski (Blu-ray)\",\"current_price\":{\"value\":16.33,\"currency_code\":\"CAD\"}}";
+		String expectedJson = "{\"_id\":13860428,\"name\":\"The Big Lebowski (Blu-ray)\",\"current_price\":{\"value\":16.33,\"currency_code\":\"CAD\"}}";
 
 		String url ="http://localhost:8080/products/13860428";
 		String revertPrice = "{\"_id\":13860428,\"current_price\":{\"value\":13.49,\"currency_code\":\"USD\"}}";
 
 		validPut(requestJson, url);
-		validGet(expected, url);
+		validGet(expectedJson, url);
 		validPut(revertPrice, url);
 	}
 
